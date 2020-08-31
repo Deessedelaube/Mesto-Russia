@@ -7,8 +7,7 @@
   background-color: #000000;
   background-image: url("../../../images/button-add.png");
   background-size: 20px;
-  background-repeat: no-repeat;
-  background-position: center;
+
 }
 .button_type_add:hover{
   border: 2px solid rgba(255, 255, 255, 0.6);

@@ -6,4 +6,7 @@
   width: 282px;
   background-color: #ffffff;
   border-radius: 10px 10px 10px 10px;
+  list-style: none;
+  padding: 0;
+  overflow: hidden;
 }

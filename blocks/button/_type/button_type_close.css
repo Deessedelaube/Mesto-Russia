@@ -7,8 +7,6 @@
   background-image: url("../../../images/button-close.png");
   background-size: 42px;
   background-color:rgba(0, 0, 0, 0);
-  background-repeat: no-repeat;
-  background-position: center;
   border: none;
   cursor: pointer;
 }
