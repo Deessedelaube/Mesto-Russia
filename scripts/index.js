@@ -18,7 +18,7 @@ const popupToggle = () => {
   //если форма открыта, то записываем в форму значения полей профиля
   if (popup.classList.contains('popup_opened')){
     nameInput.textContent = profileName.value;
-    jobInput.textContent = profilejob.value;;
+    jobInput.textContent = profilejob.value;
   } else {return}
 };
 
