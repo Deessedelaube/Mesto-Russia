@@ -4,7 +4,7 @@
 
 ## Где посмотреть
 
-Конечно на [GitHub Pages](https://deessedelaube.github.io/russian-travel/index.html)
+Конечно на [GitHub Pages](https://deessedelaube.github.io/Mesto-Russia/)
 
 ### Что использовано впервые
 
