@@ -1,3 +1,4 @@
 .page_overflow_hidden{
+  height: 100vh;
   overflow: hidden;
 }

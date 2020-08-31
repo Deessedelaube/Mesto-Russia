@@ -13,6 +13,7 @@ text-align: center;
 }
 @media only screen and (max-width: 425px){
   .profile__job{
+margin: 14px 0 0;
 font-size: 14px;
 line-height: 17px;
 text-align: center;

@@ -1,17 +1,24 @@
 .button_type_close{
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   position: absolute;
-  top: -47px;
-  right: -45px;
+  top: -42px;
+  right: -40px;
   background-image: url("../../../images/button-close.png");
-  background-size: 42px cover;
+  background-size: 42px;
   background-color:rgba(0, 0, 0, 0);
   background-repeat: no-repeat;
-background-position: center;
-border: none;
-cursor: pointer;
+  background-position: center;
+  border: none;
+  cursor: pointer;
 }
 .button_type_close:hover{
   opacity:0.6;
 }
+/* @media only screen and (max-width: 425px){
+  .button_type_close{
+    top: -42px;
+    right: -40px;
+    background-size: 36px;
+}
+} */

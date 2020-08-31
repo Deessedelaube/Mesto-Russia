@@ -17,6 +17,7 @@
 @media only screen and (max-width: 756px){
   .button_type_add{
 margin: 0 auto;
-width: 282px;
+width: 100%;
+max-width: 282px;
 }
 }

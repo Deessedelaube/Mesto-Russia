@@ -4,6 +4,7 @@
 
 .profile{
   margin: 0 auto;
+  box-sizing: border-box;
   padding-top: 36.25px;
   padding-bottom: 47.25px;
   width: 88%;
@@ -15,5 +16,6 @@
 @media only screen and (max-width: 756px){
   .profile{
 flex-direction: column;
+justify-content: flex-start;
 }
 }

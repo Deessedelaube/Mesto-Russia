@@ -1,17 +1,19 @@
 # Проект 4: Место
 
-### Обзор
+*Проект в рамках обучения на [Яндекс.Практикум](https://praktikum.yandex.ru/ "Пойти учиться!")*
 
-* Figma
-* Картинки
+## Где посмотреть
 
-**Figma**
+Конечно на [GitHub Pages](https://deessedelaube.github.io/russian-travel/index.html)
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+### Что использовано впервые
 
-**Картинки**
+* [Макет на Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
+* [Картинки с Unsplash](https://unsplash.com)
+* Формы
+* Попап
+* JS
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+### Что дальше
 
-Удачи!
+Покажет 5 sprint!
