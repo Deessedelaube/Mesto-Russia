@@ -1,0 +1,11 @@
+@import url("./_type/button_type_add.css");
+@import url("./_type/button_type_edit.css");
+@import url("./_type/button_type_like.css");
+@import url("./_type/button_type_close.css");
+@import url("./_type/button_type_save.css");
+
+
+.button{
+  background-color: #000000;
+  box-sizing: border-box;
+}

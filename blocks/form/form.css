@@ -1,0 +1,12 @@
+@import url("./__fullname/form__fullname.css");
+@import url("./__description/form__description.css");
+
+.form{
+  margin:0;
+  padding: 0;
+  width: 358px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}

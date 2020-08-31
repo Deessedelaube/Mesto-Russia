@@ -1,0 +1,17 @@
+.button_type_close{
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  top: -47px;
+  right: -45px;
+  background-image: url("../../../images/button-close.png");
+  background-size: 42px cover;
+  background-color:rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+background-position: center;
+border: none;
+cursor: pointer;
+}
+.button_type_close:hover{
+  opacity:0.6;
+}

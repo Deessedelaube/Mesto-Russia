@@ -1,0 +1,13 @@
+.element__container{
+  margin: 0;
+  padding: 25px 15px 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 0px 0px 10px 10px;
+  border-style: none;
+  border: none;
+    outline: 0;
+}

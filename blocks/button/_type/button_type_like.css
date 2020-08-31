@@ -1,0 +1,15 @@
+.button_type_like{
+width: 23px;
+height: 19px;
+background-image: url("../../../images/button-like.png");
+background-size: 21px cover;
+background-color: #fff;
+background-repeat: no-repeat;
+background-position: center;
+border: none;
+}
+
+/* @media only screen and (max-width: 756px){
+  .button_type_like{
+width: 21px;
+}} */
