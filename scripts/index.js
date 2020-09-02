@@ -13,13 +13,15 @@ let profilejob = document.querySelector('.profile__job');
 
 //* функция открытия/закрытия поп-апа
 const popupToggle = () => {
+
+  //если форма была закрыта, то записываем в форму значения полей профиля
+if (popup.classList.contains('popup_opened') === false){
+  nameInput.textContent = profileName.value;
+  jobInput.textContent = profilejob.value;
+}
+//открываем-закрываем попап
   popup.classList.toggle('popup_opened');
   page.classList.toggle('page_overflow_hidden');
-  //если форма открыта, то записываем в форму значения полей профиля
-  if (popup.classList.contains('popup_opened')){
-    nameInput.textContent = profileName.value;
-    jobInput.textContent = profilejob.value;
-  } else {return}
 };
 
 //* функция закрытия по клику не на форму

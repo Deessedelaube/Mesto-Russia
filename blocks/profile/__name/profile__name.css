@@ -1,5 +1,6 @@
 .profile__name{
 margin: 0;
+width: 100%;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
@@ -8,17 +9,15 @@ font-style: normal;
 font-weight: 500;
 font-size: 42px;
 line-height: 56px;
-display: inline;
+display:  inline-block;
 }
-@media only screen and (max-width: 756px) and (min-width: 426px){
+/* @media only screen and (max-width: 756px) and (min-width: 426px){
   .profile__name{
-text-align: center;
+  text-align: center;
+}}*/
 
-}
-}
 @media only screen and (max-width: 425px){
   .profile__name{
 font-size: 27px;
-text-align: center;
 }
 }
