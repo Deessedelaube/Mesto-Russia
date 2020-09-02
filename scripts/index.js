@@ -15,9 +15,9 @@ let profilejob = document.querySelector('.profile__job');
 const popupToggle = () => {
 
   //если форма была закрыта, то записываем в форму значения полей профиля
-if (popup.classList.contains('popup_opened') === false){
-  nameInput.textContent = profileName.value;
-  jobInput.textContent = profilejob.value;
+if (!popup.classList.contains('popup_opened')){
+  nameInput.value = profileName.textContent;
+  jobInput.value = profilejob.textContent;
 }
 //открываем-закрываем попап
   popup.classList.toggle('popup_opened');
