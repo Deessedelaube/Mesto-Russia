@@ -1,15 +1,10 @@
 .button_type_like{
 width: 23px;
 height: 19px;
-background-image: url("../../../images/button-like.png");
-background-size: 21px cover;
-background-color: #fff;
+background-image: url("../../../images/likehover.png");
+background-color: rgba(255,255,255,0);
 border: none;
 }
 .button_type_like:hover{
-transform: scale(1.2, 1.2);
+  background-color: rgba(255,255,255,1);
 }
-/* @media only screen and (max-width: 756px){
-  .button_type_like{
-width: 21px;
-}} */

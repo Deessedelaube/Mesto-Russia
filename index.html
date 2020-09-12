@@ -26,6 +26,7 @@
     <section>
       <ul class="elements">
       <li class="element">
+        <button class="button button_type_delete"></button>
         <img src="./images/dagestan.jpg" alt="Дагестан" class="element__image">
         <div class="element__container">
           <h2 class="element__title">Дагестан</h2>
@@ -33,6 +34,7 @@
         </div>
       </li>
       <li class="element">
+        <button class="button button_type_delete"></button>
         <img src="./images/nizhnyi.jpg" alt="Храм в Нижегородской области" class="element__image">
         <div class="element__container">
           <h2 class="element__title">Нижегородская область</h2>
@@ -41,6 +43,7 @@
       </li>
 
       <li class="element">
+        <button class="button button_type_delete"></button>
         <img src="./images/ingushetia.jpg" alt="Ингушетия" class="element__image">
         <div class="element__container">
           <h2 class="element__title">Ингушетия</h2>
@@ -49,6 +52,7 @@
       </li>
 
       <li class="element">
+        <button class="button button_type_delete"></button>
         <img src="./images/promorskyi.jpg" alt="Приморье" class="element__image">
         <div class="element__container">
           <h2 class="element__title">Приморский край</h2>
@@ -57,6 +61,7 @@
       </li>
 
       <li class="element">
+        <button class="button button_type_delete"></button>
         <img src="./images/sochi.jpg" alt="Сочи" class="element__image">
         <div class="element__container">
           <h2 class="element__title">Сочи</h2>
@@ -65,6 +70,7 @@
       </li>
 
       <li class="element">
+        <button class="button button_type_delete"></button>
         <img src="./images/irkutsk.jpg" alt="Ольхон" class="element__image">
         <div class="element__container">
           <h2 class="element__title">Иркутская область</h2>
@@ -79,10 +85,10 @@
       <h3 class="footer__title">&copy; 2020 Mesto Russia</h3>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" name="edit_profile" action="#" method="GET">
+        <form class="form form_profile" name="edit_profile" action="#" method="GET">
           <input type="text" value="Жак-Ив Кусто" name="fullname" class="form__fullname">
           <input type="text" value="Исследователь океана" name="job" class="form__description">
           <button class="button button_type_save" type="submit" value="Сохранить">Сохранить</button>
@@ -91,7 +97,27 @@
       </div>
     </div>
 
+    <div class="popup popup_addElement">
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="form form_addElement" name="add_element" action="#" method="GET">
+          <input type="text" value="Название" name="elementTitle" class="form__fullname">
+          <input type="text" value="Ссылка на картинку" name="elementSrc" class="form__description">
+          <button class="button button_type_save" type="submit" value="Создать">Создать</button>
+        </form>
+        <button class="button button_type_close"></button>
+      </div>
+    </div>
   </div>
+  <template>
+    <li class="element">
+      <img src="./images/irkutsk.jpg" alt="Ольхон" class="element__image">
+      <div class="element__container">
+        <h2 class="element__title"></h2>
+        <button class="button button_type_like"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js" defer></script>
 </body>
 </html>
