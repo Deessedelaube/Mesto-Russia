@@ -52,11 +52,14 @@ let places = [
 ];
 function render (){
   elements.innerHTML ="";
-  places.forEach((item) =>{
+  places.forEach((item, index) =>{
     const htmlElement = itemTemplate.cloneNode(true);
     htmlElement.querySelector('.element__title').innerText = item.name;
     htmlElement.querySelector('.element__image').src = item.link;
+    htmlElement.querySelector('.element__image').alt = item.name;
+    htmlElement.querySelector('.element').setAttribute("data-id", index);
     elements.appendChild(htmlElement);
+    setListeners();
   })
 };
 
@@ -107,10 +110,19 @@ function formProfileSubmitHandler (evt) {
   profileName.textContent = nameInput.value;
   profilejob.textContent = jobInput.value;
   popupProfileToggle();
-}
-
-//Вставляем все слушатели событий
+};
+//функция удаления карточки
+function handleDelete (event){
+  const index = event.target.parentNode.getAttribute("data-id");
+places.splice(index, 1);
 render();
+};
+//Вставляем все слушатели событий
+function setListeners (){
+  document.querySelectorAll('.button_type_delete').forEach((btn)=>{
+    btn.addEventListener('click', handleDelete);
+  });
+}
 popupProfileOpenButton.addEventListener('click', popupProfileToggle);
 formProfile.addEventListener('submit', formProfileSubmitHandler);
 popupProfileClose.addEventListener('click', popupProfileToggle);
@@ -120,3 +132,4 @@ popupAddElementOpenButton.addEventListener('click', popupToggle);
 formAddElement.addEventListener('submit', formAddElementSubmitHandler);
 popupAddElementClose.addEventListener('click',popupToggle);
 
+render();
