@@ -106,23 +106,34 @@ const popupCloseByClickonOverlay = (event) => {
 // Обработчик «отправки» формы
 function formProfileSubmitHandler (evt) {
   evt.preventDefault(); //убираем стандартную отправку
-// Вставляем новые значения с помощью textContent
+// Вставляем новые значения
   profileName.textContent = nameInput.value;
   profilejob.textContent = jobInput.value;
   popupProfileToggle();
 };
+
 //функция удаления карточки
 function handleDelete (event){
   const index = event.target.parentNode.getAttribute("data-id");
-places.splice(index, 1);
-render();
+  places.splice(index, 1);
+  render();
 };
+
+function handleLike (event){
+  event.target.classList.toggle('button_type_like_clicked');
+
+};
+
 //Вставляем все слушатели событий
 function setListeners (){
   document.querySelectorAll('.button_type_delete').forEach((btn)=>{
     btn.addEventListener('click', handleDelete);
   });
-}
+  document.querySelectorAll('.button_type_like').forEach((btn)=>{
+    btn.addEventListener('click', handleLike);
+  });
+};
+
 popupProfileOpenButton.addEventListener('click', popupProfileToggle);
 formProfile.addEventListener('submit', formProfileSubmitHandler);
 popupProfileClose.addEventListener('click', popupProfileToggle);
