@@ -5,6 +5,7 @@
 @import url("./_type/button_type_save.css");
 @import url("./_type/button_type_delete.css");
 @import url("./_type/button_type_enlarge.css");
+@import url("./_type/_clicked/button_type_like_clicked.css");
 
 
 .button{

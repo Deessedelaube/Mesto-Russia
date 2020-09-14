@@ -10,16 +10,16 @@ const popupProfileClose = popupProfile.querySelector('.button_type_close');
 const popupAddElementClose = popupAddElement.querySelector('.button_type_close');
 
 // Находим форму редактирования профиля и ее поля в DOM
-let formProfile = popupProfile.querySelector('.form_profile');
-let nameInput = popupProfile.querySelector('.form__fullname');
-let jobInput = popupProfile.querySelector('.form__description');
+const formProfile = popupProfile.querySelector('.form_profile');
+const nameInput = popupProfile.querySelector('.form__fullname');
+const jobInput = popupProfile.querySelector('.form__description');
 // Выбираем элементы профиля, куда должны быть вставлены значения полей
-let profileName = document.querySelector('.profile__name');
-let profilejob = document.querySelector('.profile__job');
+const profileName = document.querySelector('.profile__name');
+const profilejob = document.querySelector('.profile__job');
 // Находим форму добавления карточки места
-let formAddElement = popupAddElement.querySelector('.form_addElement');
-let titleInput = popupAddElement.querySelector('.form__fullname');
-let srcInput = popupAddElement.querySelector('.form__description');
+const formAddElement = popupAddElement.querySelector('.form_addElement');
+const titleInput = popupAddElement.querySelector('.form__fullname');
+const srcInput = popupAddElement.querySelector('.form__description');
 
 const elements = document.querySelector('.elements');
 const itemTemplate = document.querySelector('.element_template').content;
