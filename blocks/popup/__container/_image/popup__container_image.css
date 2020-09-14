@@ -1,8 +1,7 @@
 .popup__container_image{
 margin:0 auto;
 padding: 0;
-max-width: 816px;
-width: 80%;
+max-width: 75vw;
 box-sizing: border-box;
 background:rgba(0, 0, 0, 0);
 border: none;
