@@ -24,62 +24,9 @@
     </section>
 
     <section>
-      <ul class="elements">
-      <!-- <li class="element">
-        <button class="button button_type_delete"></button>
-        <img src="./images/dagestan.jpg" alt="Дагестан" class="element__image">
-        <div class="element__container">
-          <h2 class="element__title">Дагестан</h2>
-          <button class="button button_type_like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <button class="button button_type_delete"></button>
-        <img src="./images/nizhnyi.jpg" alt="Храм в Нижегородской области" class="element__image">
-        <div class="element__container">
-          <h2 class="element__title">Нижегородская область</h2>
-          <button class="button button_type_like"></button>
-        </div>
-      </li>
-
-      <li class="element">
-        <button class="button button_type_delete"></button>
-        <img src="./images/ingushetia.jpg" alt="Ингушетия" class="element__image">
-        <div class="element__container">
-          <h2 class="element__title">Ингушетия</h2>
-          <button class="button button_type_like"></button>
-        </div>
-      </li>
-
-      <li class="element">
-        <button class="button button_type_delete"></button>
-        <img src="./images/promorskyi.jpg" alt="Приморье" class="element__image">
-        <div class="element__container">
-          <h2 class="element__title">Приморский край</h2>
-          <button class="button button_type_like"></button>
-        </div>
-      </li>
-
-      <li class="element">
-        <button class="button button_type_delete"></button>
-        <img src="./images/sochi.jpg" alt="Сочи" class="element__image">
-        <div class="element__container">
-          <h2 class="element__title">Сочи</h2>
-          <button class="button button_type_like"></button>
-        </div>
-      </li>
-
-      <li class="element">
-        <button class="button button_type_delete"></button>
-        <img src="./images/irkutsk.jpg" alt="Ольхон" class="element__image">
-        <div class="element__container">
-          <h2 class="element__title">Иркутская область</h2>
-          <button class="button button_type_like"></button>
-        </div>
-      </li> -->
-
-    </ul>
+      <ul class="elements"></ul>
     </section>
+
   </main>
     <footer class="footer">
       <h3 class="footer__title">&copy; 2020 Mesto Russia</h3>
@@ -99,7 +46,7 @@
 
     <div class="popup popup_addElement">
       <div class="popup__container">
-        <h2 class="popup__title">Новое место</h2>
+        <h2 class="popup__title">Новое меcто</h2>
         <form class="form form_addElement" name="add_element" action="#" method="GET">
           <input type="text" value="Название" name="elementTitle" class="form__fullname">
           <input type="text" value="Ссылка на картинку" name="elementSrc" class="form__description">
@@ -109,10 +56,18 @@
       </div>
     </div>
   </div>
+  <div class="popup popup_openImage">
+    <div class="popup__container_image">
+      <img class="popup__image" src="./images/irkutsk.jpg" alt="Картинка">
+      <h2 class="popup__title_image">Название места</h2>
+      <button class="button button_type_close"></button>
+    </div>
+  </div>
+
   <template class="element_template">
     <li class="element">
       <button class="button button_type_delete"></button>
-      <img src="./images/irkutsk.jpg" alt="Ольхон" class="element__image">
+      <button class ="button button_type_enlarge"><img src="" alt="" class="element__image"></button>
       <div class="element__container">
         <h2 class="element__title"></h2>
         <button class="button button_type_like"></button>
