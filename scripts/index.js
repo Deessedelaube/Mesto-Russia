@@ -71,8 +71,8 @@ function formAddElementSubmitHandler (){
     newelement.link = srcInput.value;
   places.unshift(newelement);
   render(places);
-  titleInput.value ="";
-  srcInput.value ="";
+  titleInput.value ="Название";
+  srcInput.value ="Ссылка на картинку";
   popupToggle();
 };
 
@@ -121,7 +121,6 @@ function formProfileSubmitHandler (evt) {
 //функция удаления карточки
 function handleDelete (event){
   let index = event.target.parentNode.getAttribute("data-id");
-  console.log(index);
   places.splice(index, 1);
   render();
 };

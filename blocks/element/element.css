@@ -3,6 +3,7 @@
 @import url("./__title/element__title.css");
 
 .element{
+  margin: 0;
   width: 282px;
   background-color: #ffffff;
   border-radius: 10px 10px 10px 10px;
