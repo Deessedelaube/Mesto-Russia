@@ -1,8 +1,9 @@
 .element__image{
   margin: 0;
-  width: 100%;
+  width: 282px;
   height: 282px;
   background-size: cover;
   border: none;
   outline: 0;
+  cursor: pointer;
 }

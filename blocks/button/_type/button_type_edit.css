@@ -10,6 +10,7 @@
   background-image: url("../../../images/button-edit.png");
   background-size: 10px;
   background-color: #000;
+  cursor: pointer;
   }
 .button_type_edit:hover{
   border: 1px solid rgba(255, 255, 255, 0.6);

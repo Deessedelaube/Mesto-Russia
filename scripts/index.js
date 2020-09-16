@@ -1,7 +1,7 @@
 const popup = document.querySelectorAll('.popup');
-const popupProfile = popup[0];
-const popupAddElement = popup[1];
-const popupEnlargeImage = popup[2];
+const popupProfile = document.querySelector('.popup_profile');
+const popupAddElement = document.querySelector('.popup_addElement');
+const popupEnlargeImage = document.querySelector('.popup_openImage');
 const page = document.querySelector('.page');
 const popupProfileOpenButton = document.querySelector('.button_type_edit');
 const popupAddElementOpenButton = document.querySelector('.button_type_add');
@@ -50,30 +50,46 @@ const places = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
 }
 ];
+
 //отрисовщик массива картинок
 function render (){
   elements.innerHTML ="";
-  places.forEach((item, index) =>{
+  places.forEach(()=>{
+    addCard();
+});
+};
+
+function addCard (item,index){
     const htmlElement = itemTemplate.cloneNode(true);
+    let image = htmlElement.querySelector('.element__image');
     htmlElement.querySelector('.element__title').innerText = item.name;
-    htmlElement.querySelector('.element__image').src = item.link;
-    htmlElement.querySelector('.element__image').alt = item.name;
+    image.src = item.link;
+    image.alt = item.name;
     htmlElement.querySelector('.element').setAttribute("data-id", index);
     elements.appendChild(htmlElement);
     setListeners();
-  })
 };
 
 //обработчик формы добавления карточки
 function formAddElementSubmitHandler (){
-  const newelement = {};
-    newelement.name = titleInput.value;
-    newelement.link = srcInput.value;
-  places.unshift(newelement);
-  render(places);
-  titleInput.value ="Название";
-  srcInput.value ="Ссылка на картинку";
-  popupToggle();
+  debugger;
+  // const newelement = {};
+  //   newelement.name = titleInput.value;
+  //   newelement.link = srcInput.value;
+
+    const htmlElement = itemTemplate.cloneNode(true);
+    let image = htmlElement.querySelector('.element__image');
+    htmlElement.querySelector('.element__title').innerText = titleInput.value;
+    image.src = srcInput.value;;
+    image.alt = titleInput.value;
+    htmlElement.querySelector('.element').setAttribute("data-id", 0);
+    // elements.appendChild(htmlElement);
+    elements.insertBefore(htmlElement, elements.firstChild);
+  setListeners();
+  // addCard(places);
+  titleInput.value ="";
+  srcInput.value ="";
+  // popupToggle();
 };
 
 //функция открытия/закрытия попапа добавления карточки
@@ -153,4 +169,5 @@ formAddElement.addEventListener('submit', formAddElementSubmitHandler);
 popupAddElementClose.addEventListener('click',popupToggle);
 
 popupEnlargeImage.querySelector('.button_type_close').addEventListener('click',popupEnlargeImageToggle);
-render();
+places.forEach(item =>{addCard(item)});
+

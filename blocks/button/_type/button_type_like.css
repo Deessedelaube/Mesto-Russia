@@ -4,6 +4,7 @@ height: 19px;
 background-image: url("../../../images/likehover.png");
 background-color: rgba(255,255,255,0);
 border: none;
+cursor: pointer;
 }
 .button_type_like:hover{
   opacity: 0.6;
