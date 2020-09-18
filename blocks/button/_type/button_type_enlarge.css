@@ -1,5 +1,7 @@
 .button_type_enlarge{
   margin: 0;
+  width: 282px;
+  height: 282px;
   padding: 0;
   border: none;
 }
