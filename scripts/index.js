@@ -132,13 +132,13 @@ function handleLike (event){
 
 //Вставляем все слушатели событий
 function setListeners (htmlelem){
-  let btnDelete = htmlelem.querySelector('.button_type_delete');
+  const btnDelete = htmlelem.querySelector('.button_type_delete');
   btnDelete.addEventListener('click', handleDelete);
 
-  let btnLike = htmlelem.querySelector('.button_type_like');
+  const btnLike = htmlelem.querySelector('.button_type_like');
   btnLike.addEventListener('click', handleLike);
 
-  let imgsize = htmlelem.querySelector('.button_type_enlarge');
+  const imgsize = htmlelem.querySelector('.button_type_enlarge');
   imgsize.addEventListener('click',popupEnlargeImageOpen);
 };
 
