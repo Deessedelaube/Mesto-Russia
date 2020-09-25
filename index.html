@@ -35,9 +35,21 @@
     <div class="popup popup_profile">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form form_profile" name="edit_profile" action="#" method="GET">
-          <input type="text" value="Жак-Ив Кусто" name="fullname" class="form__fullname">
-          <input type="text" value="Исследователь океана" name="job" class="form__description">
+        <form class="form form_profile" name="edit_profile" action="#" method="GET" novalidate>
+          <label for ="fullname">
+            <input type="text" placeholder="Имя" name="fullname" class="form__fullname" 
+                   required
+                   minlength ="2"
+                   maxlength ="40">
+            <span id ="fullname-error"></span>
+          </label>
+          <label for"">
+            <input type="text" placeholder="О себе" name="job" class="form__description" 
+                   required
+                   minlength ="2"
+                   maxlength ="200">
+            <span id ="job-error"></span>
+          </label>
           <button class="button button_type_save" type="submit" value="Сохранить">Сохранить</button>
         </form>
         <button class="button button_type_close"></button>
@@ -47,9 +59,19 @@
     <div class="popup popup_addElement">
       <div class="popup__container">
         <h2 class="popup__title">Новое меcто</h2>
-        <form class="form form_addElement" name="add_element" action="#" method="GET">
-          <input type="text" placeholder="Название" name="elementTitle" class="form__fullname">
-          <input type="text" placeholder="Ссылка на картинку" name="elementSrc" class="form__description">
+        <form class="form form_addElement" name="add_element" action="#" method="GET" novalidate>
+          <label for="">
+            <input type="text" placeholder="Название" name="elementTitle" class="form__fullname"
+                   required
+                   minlength ="2"
+                   maxlength ="30">
+            <span id ="elementTitle-error"></span>
+          </label>
+          <label for="">
+            <input type="URL" placeholder="Ссылка на картинку" name="elementSrc" class="form__description"
+                   required>
+            <span id ="elementSrc-error"></span>
+          </label>
           <button class="button button_type_save" type="submit" value="Создать">Создать</button>
         </form>
         <button class="button button_type_close"></button>
