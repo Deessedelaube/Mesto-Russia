@@ -1,5 +1,11 @@
-@import url("./__fullname/form__fullname.css");
-@import url("./__description/form__description.css");
+@import url("./__input/form__input.css");
+@import url("./__input/_name/form__input_name.css");
+@import url("./__input/_description/form__input_description.css");
+@import url("./__field/form__field.css");
+@import url("./__error/form__error.css");
+@import url("./__error/_active/form__error_visible.css");
+@import url("./__input/_type/form__input_type_error.css");
+@import url("./__input/_type/form__input_type_valid.css");
 
 .form{
   margin:0;

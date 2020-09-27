@@ -36,19 +36,19 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="form form_profile" name="edit_profile" action="#" method="GET" novalidate>
-          <label for ="fullname">
-            <input type="text" placeholder="Имя" name="fullname" class="form__fullname" 
-                   required
-                   minlength ="2"
-                   maxlength ="40">
-            <span id ="fullname-error"></span>
+          <label for="fullname" class="form__field">
+            <input type="text" placeholder="Имя" name="fullname" id="fullname" class="form__input form__input_name"
+              required
+              minlength="2"
+              maxlength="40">
+            <span class="form__error" id="fullname-error"></span>
           </label>
-          <label for"">
-            <input type="text" placeholder="О себе" name="job" class="form__description" 
-                   required
-                   minlength ="2"
-                   maxlength ="200">
-            <span id ="job-error"></span>
+          <label for="job" class="form__field">
+            <input type="text" placeholder="О себе" name="job" id="job" class="form__input form__input_description"
+              required
+              minlength="2"
+              maxlength="200">
+            <span class="form__error" id="job-error"></span>
           </label>
           <button class="button button_type_save" type="submit" value="Сохранить">Сохранить</button>
         </form>
@@ -60,19 +60,19 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое меcто</h2>
         <form class="form form_addElement" name="add_element" action="#" method="GET" novalidate>
-          <label for="">
-            <input type="text" placeholder="Название" name="elementTitle" class="form__fullname"
-                   required
-                   minlength ="2"
-                   maxlength ="30">
-            <span id ="elementTitle-error"></span>
+          <label for="elementTitle" class="form__field">
+            <input type="text" placeholder="Название" name="elemTitle" id ="elemTitle" class="form__input form__input_name"
+              required
+              minlength="2"
+              maxlength="30">
+            <span class="form__error" id="elemTitle-error"></span>
           </label>
-          <label for="">
-            <input type="URL" placeholder="Ссылка на картинку" name="elementSrc" class="form__description"
-                   required>
-            <span id ="elementSrc-error"></span>
+          <label for="link" class="form__field">
+            <input type="url" placeholder="Ссылка на картинку" name="link" id ="link" class="form__input form__input_description"
+              required>
+            <span class="form__error" id="link-error"></span>
           </label>
-          <button class="button button_type_save" type="submit" value="Создать">Создать</button>
+            <button class="button button_type_save" type="submit" value="Создать">Создать</button>
         </form>
         <button class="button button_type_close"></button>
       </div>
@@ -96,7 +96,7 @@
       </div>
     </li>
   </template>
-
   <script src="./scripts/index.js" defer></script>
+  <script src="./scripts/validate.js" defer></script>
 </body>
 </html>

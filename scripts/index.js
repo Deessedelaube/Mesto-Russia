@@ -10,15 +10,15 @@ const popupAddElementClose = popupAddElement.querySelector('.button_type_close')
 
 // Находим форму редактирования профиля и ее поля в DOM
 const formProfile = popupProfile.querySelector('.form_profile');
-const nameInput = popupProfile.querySelector('.form__fullname');
-const jobInput = popupProfile.querySelector('.form__description');
+const nameInput = popupProfile.querySelector('.form__input_name');
+const jobInput = popupProfile.querySelector('.form__input_description');
 // Выбираем элементы профиля, куда должны быть вставлены значения полей
 const profileName = document.querySelector('.profile__name');
 const profilejob = document.querySelector('.profile__job');
 // Находим форму добавления карточки места
 const formAddElement = popupAddElement.querySelector('.form_addElement');
-const titleInput = popupAddElement.querySelector('.form__fullname');
-const srcInput = popupAddElement.querySelector('.form__description');
+const titleInput = popupAddElement.querySelector('.form__input_name');
+const srcInput = popupAddElement.querySelector('.form__input_description');
 
 const elements = document.querySelector('.elements');
 const itemTemplate = document.querySelector('.element_template').content;
@@ -66,7 +66,7 @@ function addCard (item){
 };
 
 //обработчик формы добавления карточки
-function formAddElementSubmitHandler(evt){
+function formAddElemSubmitHandler(evt){
   evt.preventDefault();
   const newcard = {};
     newcard.name = titleInput.value;
@@ -100,15 +100,16 @@ const popupEnlargeImageOpen = (event)=>{
   popupOpen(popupEnlargeImage);
 };
 //функция открытия попапа добавления карточки
-const popupAddElementOpen = (event)=>{
+const popupAddElementOpen = (evt)=>{
   titleInput.value ="";
   srcInput.value = "";
   popupOpen(popupAddElement);
 };
 //* функция закрытия по клику не на форму
 const popupCloseByClickonOverlay = (event) => {
-  if (event.target === event.currentTarget){
-    popupClose();
+  if (event.target !== event.currentTarget){
+    const OpenedPopup = event.target;
+    popupClose(OpenedPopup);
   } else {return}};
 
 // Обработчик «отправки» формы
@@ -145,13 +146,21 @@ function setListeners (htmlelem){
 popupProfileOpenButton.addEventListener('click', popupProfileOpen);
 formProfile.addEventListener('submit', formProfileSubmitHandler);
 popupProfileClose.addEventListener('click', () => {popupClose(popupProfile)});
-popupProfile.addEventListener('click', popupCloseByClickonOverlay);
 
 popupAddElementOpenButton.addEventListener('click', popupAddElementOpen);
-formAddElement.addEventListener('submit', formAddElementSubmitHandler);
+formAddElement.addEventListener('submit', formAddElemSubmitHandler);
 popupAddElementClose.addEventListener('click',() => {popupClose(popupAddElement)});
 
 popupEnlargeImage.querySelector('.button_type_close').addEventListener('click',() => {popupClose(popupEnlargeImage)});
+//закрываем попапы по Esc и оверлэй
+document.addEventListener('keydown', (evt)=>{
+  if (evt.key === "Escape"){
+    const OpenedPopup = document.querySelector('.popup_opened');
+    popupClose(OpenedPopup);
+  }
+});
+page.addEventListener('click', popupCloseByClickonOverlay);
+
 places.forEach(item =>{addCard(item)});
 
 
