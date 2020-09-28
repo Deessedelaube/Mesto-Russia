@@ -43,14 +43,14 @@ const setEventListeners = (formElement,obj) => {
   const buttonElement = formElement.querySelector(obj.submitButtonSelector);
 
   toggleButtonState(inputList,buttonElement,obj);
-//сделать независимой от верстки
+//валидируем форму профиля при открытии
   if (formElement.closest('.popup').classList.contains('popup_profile')){
   formElement.closest('.popup').addEventListener('mouseover', function() {
     inputList.forEach((inputElement)=>{
       validityhandler(formElement, inputElement, obj,inputList,buttonElement);
+      });
     });
-  });
-};
+  };
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
