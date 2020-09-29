@@ -1,17 +1,17 @@
 .button_type_save{
-margin: 48px 0 0;
-width: 100%;
-height: 50px;
-background: #000000;
-border-radius: 2px;
-cursor: pointer;
-font-family: 'Inter', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 22px;
-text-align: center;
-color: #FFFFFF;
+  margin: 48px 0 0;
+  width: 100%;
+  height: 50px;
+  background: #000000;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
 }
 .button_type_save:hover{
   background: rgba(0, 0, 0, 0.8);

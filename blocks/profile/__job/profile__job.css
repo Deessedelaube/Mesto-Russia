@@ -1,25 +1,25 @@
 .profile__job{
-margin: 16px 0 0;
-width: 100%;
-text-overflow: ellipsis;
-white-space: nowrap;
-overflow: hidden;
-font-family: 'Inter', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 22px;
+  margin: 16px 0 0;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
 }
 @media only screen and (max-width: 756px) and (min-width: 426px){
   .profile__job{
-text-align: center;
-}
+    text-align: center;
+  }
 }
 @media only screen and (max-width: 425px){
   .profile__job{
-margin: 14px 0 0;
-font-size: 14px;
-line-height: 17px;
-text-align: center;
-}
+    margin: 14px 0 0;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+  }
 }

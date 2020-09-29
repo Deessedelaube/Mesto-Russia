@@ -44,13 +44,11 @@ const setEventListeners = (formElement,obj) => {
 
   toggleButtonState(inputList,buttonElement,obj);
 //валидируем форму профиля при открытии
-  if (formElement.closest('.popup').classList.contains('popup_profile')){
   formElement.closest('.popup').addEventListener('mouseover', function() {
     inputList.forEach((inputElement)=>{
       validityhandler(formElement, inputElement, obj,inputList,buttonElement);
-      });
     });
-  };
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {

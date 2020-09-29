@@ -15,7 +15,7 @@
 }
 @media only screen and (max-width: 756px){
   .profile{
-flex-direction: column;
-justify-content: center;
-}
+    flex-direction: column;
+    justify-content: center;
+  }
 }

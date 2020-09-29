@@ -8,7 +8,6 @@
   background-image: url("../../../images/button-add.png");
   background-size: 20px;
   cursor: pointer;
-
 }
 .button_type_add:hover{
   border: 2px solid rgba(255, 255, 255, 0.6);
@@ -16,8 +15,8 @@
 }
 @media only screen and (max-width: 756px){
   .button_type_add{
-margin: 0 auto;
-width: 100%;
-max-width: 282px;
-}
+    margin: 0 auto;
+    width: 100%;
+    max-width: 282px;
+  }
 }

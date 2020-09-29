@@ -1,9 +1,7 @@
 .button_type_edit{
-  /* margin-left: 17px; */
   width: 24px;
   height: 24px;
   border: 1px solid #FFFFFF;
-  /* display: inline-block; */
   position: absolute;
   bottom: 55%;
   right: -41px;
@@ -20,7 +18,6 @@
   .button_type_edit{
     width: 18px;
     height: 18px;
-    /* margin-left: 2px; */
     right: -20px;
-}
+  }
 }
