@@ -82,24 +82,27 @@ function openPopup(popup) {
   document.addEventListener('keydown', closePopupByEsc);
 };
 function closePopup(popup){
+  document.removeEventListener('keydown', closePopupByEsc);
   popup.classList.remove('popup_opened');
   page.classList.remove('page_overflow_hidden');
+
+
+};
+//*закрываем по Escape
+const closePopupByEsc = (evt)=>{
+  if ((evt.key==="Escape")&&(document.querySelector('.popup_opened'))){
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 };
 //* функция закрытия по клику не на форму
 const closePopupByClickOnOverlay = (event) => {
-  if (event.target !== event.currentTarget){
+  if ((event.target !== event.currentTarget)&&(event.target.classList.contains('popup_opened'))){
     const openedPopup = event.target;
     closePopup(openedPopup);
   };
 };
-//*закрываем по Escape
-const closePopupByEsc = (evt)=>{
-  if (evt.key === "Escape"){
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-    document.removeEventListener('keydown', closePopupByEsc);
-  };
-};
+
 //* функция открытия попапа профиля
 const openPopupProfile = () => {
   nameInput.value = profileName.textContent;
