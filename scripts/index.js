@@ -1,3 +1,6 @@
+import places from './places.js';
+import Card from './card.js';
+
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddElement = document.querySelector('.popup_addElement');
 const popupEnlargeImage = document.querySelector('.popup_openImage');
@@ -21,57 +24,18 @@ const titleInput = popupAddElement.querySelector('.form__input_name');
 const srcInput = popupAddElement.querySelector('.form__input_description');
 
 const elements = document.querySelector('.elements');
-const itemTemplate = document.querySelector('.element_template').content;
 
-const places = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-//создаем карточку
-function createCard (name,link){
-  const htmlElement = itemTemplate.cloneNode(true);
-  const image = htmlElement.querySelector('.element__image');
-  image.src = link;
-  image.alt = name;
-  htmlElement.querySelector('.element__title').textContent = name;
-  return htmlElement;
-};
-//добавляем карточки в ДОМ
-function addCard (item){
-  const card = createCard(item.name, item.link);
-  setListeners(card);
-  elements.prepend(card);
+//функция добавления карточки в ДОМ
+function addCard (name,link,zoomImage){
+  const card = new Card(name, link, zoomImage);
+  const elem = card.generateCard();
+  elements.prepend(elem);
 };
 
 //обработчик формы добавления карточки
 function formAddElemSubmitHandler(evt){
   evt.preventDefault();
-  const newcard = {};
-  newcard.name = titleInput.value;
-  newcard.link = srcInput.value;
-  addCard(newcard);
+  addCard(titleInput.value, srcInput.value, openPopupEnlargeImage);
   closePopup(popupAddElement);
 };
 
@@ -85,8 +49,6 @@ function closePopup(popup){
   document.removeEventListener('keydown', closePopupByEsc);
   popup.classList.remove('popup_opened');
   page.classList.remove('page_overflow_hidden');
-
-
 };
 //*закрываем по Escape
 const closePopupByEsc = (evt)=>{
@@ -105,15 +67,15 @@ const closePopupByClickOnOverlay = (event) => {
 
 //* функция открытия попапа профиля
 const openPopupProfile = () => {
-  nameInput.value = profileName.textContent;
+  popupProfile.querySelector('.form__input_name').value = profileName.textContent;
   jobInput.value = profilejob.textContent;
   openPopup(popupProfile);
 };
 
 //функция открытия попапа картинок
-const openPopupEnlargeImage = (event)=>{
-  popupEnlargeImage.querySelector('.popup__image').src = event.target.src;
-  popupEnlargeImage.querySelector('.popup__title_image').textContent = event.target.alt;
+const openPopupEnlargeImage = (name,link)=>{
+  popupEnlargeImage.querySelector('.popup__image').src = link;
+  popupEnlargeImage.querySelector('.popup__title_image').textContent = name;
   openPopup(popupEnlargeImage);
 };
 //функция открытия попапа добавления карточки
@@ -123,34 +85,12 @@ const openPopupAddElement = ()=>{
   openPopup(popupAddElement);
 };
 
-// Обработчик «отправки» формы
+// Обработчик попапа профиля
 function formProfileSubmitHandler (evt) {
   evt.preventDefault(); //убираем стандартную отправку
-  profileName.textContent = nameInput.value;
+  profileName.textContent = popupProfile.querySelector('.form__input_name').value;
   profilejob.textContent = jobInput.value;
   closePopup(popupProfile);
-};
-
-//функция удаления карточки
-function handleDelete (event){
-  event.target.closest('.element').remove();
-};
-
-//ставим лайки
-function handleLike (event){
-  event.target.classList.toggle('button_type_like_clicked');
-};
-
-//Вставляем все слушатели событий
-function setListeners (htmlElem){
-  const btnDelete = htmlElem.querySelector('.button_type_delete');
-  btnDelete.addEventListener('click', handleDelete);
-
-  const btnLike = htmlElem.querySelector('.button_type_like');
-  btnLike.addEventListener('click', handleLike);
-
-  const imgsize = htmlElem.querySelector('.button_type_enlarge');
-  imgsize.addEventListener('click',openPopupEnlargeImage);
 };
 
 popupProfileOpenButton.addEventListener('click', openPopupProfile);
@@ -166,8 +106,6 @@ popupEnlargeImage.querySelector('.button_type_close').addEventListener('click',(
 //закрываем попап по оверлэй
 page.addEventListener('click', closePopupByClickOnOverlay);
 
-places.forEach(item =>{
-  addCard(item)
-});
-
-
+places.forEach((item)=>{
+  addCard(item.name, item.link, openPopupEnlargeImage);
+})
