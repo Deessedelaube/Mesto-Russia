@@ -1,12 +1,14 @@
 class Card {
-  constructor(name, link,openPopupEnlargeImage){
+  constructor(templateSelector, name, link,openPopupEnlargeImage){
+    this._templateSelector = templateSelector;
     this._name = name;
     this._link = link;
     this._openPopupEnlargeImage = openPopupEnlargeImage;
   }
   _getTemplate(){
+    //создаем шаблон элемента
     const cardElement = document
-    .querySelector('.element_template')
+    .querySelector(this._templateSelector)
     .content
     .querySelector('.element')
     .cloneNode(true);
@@ -27,7 +29,7 @@ class Card {
   }
   _setEventListeners(){
     this._element.querySelector('.button_type_delete').addEventListener('click', ()=>this._handleDelete());
-    this._element.querySelector('.button_type_like').addEventListener('click', ()=>this._handleLike());
+    this._element.querySelector('.button_type_like').addEventListener('click', ()=>this._handleLike(evt));
     this._element.querySelector('.button_type_enlarge').addEventListener('click', ()=>this._openPopupEnlargeImage(this._name, this._link));
   }
   _handleDelete(){
