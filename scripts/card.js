@@ -29,11 +29,12 @@ class Card {
   }
   _setEventListeners(){
     this._element.querySelector('.button_type_delete').addEventListener('click', ()=>this._handleDelete());
-    this._element.querySelector('.button_type_like').addEventListener('click', ()=>this._handleLike(evt));
+    this._element.querySelector('.button_type_like').addEventListener('click', ()=>this._handleLike());
     this._element.querySelector('.button_type_enlarge').addEventListener('click', ()=>this._openPopupEnlargeImage(this._name, this._link));
   }
   _handleDelete(){
     this._element.remove();
+    this._element = null;
   }
   _handleLike(){
     this._element.querySelector('.button_type_like').classList.toggle('button_type_like_clicked');
