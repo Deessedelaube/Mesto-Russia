@@ -68,12 +68,12 @@ const closePopupByEsc = (evt)=>{
   }
 };
 //* функция закрытия по клику не на форму
-const closePopupByClickOnOverlay = (event) => {
-  if ((event.target !== event.currentTarget)&&(event.target.classList.contains('popup_opened'))){
-    const openedPopup = event.target;
-    closePopup(openedPopup);
-  };
-};
+// const closePopupByClickOnOverlay = (event) => {
+//   if ((event.target !== event.currentTarget)&&(event.target.classList.contains('popup_opened'))){
+//     const openedPopup = event.target;
+//     closePopup(openedPopup);
+//   };
+// };
 
 //* функция открытия попапа профиля
 const openPopupProfile = () => {
@@ -100,7 +100,7 @@ function formProfileSubmitHandler (evt) {
   evt.preventDefault(); //убираем стандартную отправку
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  closePopup(popupProfile);
+
 };
 //добавляем валидацию для формы
 const validateForm = (popup)=>{
@@ -109,12 +109,12 @@ const validateForm = (popup)=>{
   newValidator.enableValidation();
 };
 //УДАЛИТЬ создание newpopup
-const popupPro = new Popup (popupProfileSelector);
+const popupPro = new PopupWithForm (popupProfileSelector, formProfileSubmitHandler);
 // popupProfileOpenButton.addEventListener('click', openPopupProfile);
 popupProfileOpenButton.addEventListener('click', popupPro.open.bind(popupPro));
 popupPro.setEventListeners();
 validateForm(popupProfile);
-formProfile.addEventListener('submit', formProfileSubmitHandler);
+//formProfile.addEventListener('submit', formProfileSubmitHandler);
 // popupProfileClose.addEventListener('click', () => {closePopup(popupProfile)});
 
 popupAddElementOpenButton.addEventListener('click', openPopupAddElement);
@@ -126,10 +126,6 @@ popupAddElementClose.addEventListener('click',() => {closePopup(popupAddElement)
 
 //закрываем попап по оверлэй
 //page.addEventListener('click', closePopupByClickOnOverlay);
-
-// places.forEach((item)=>{
-//   elements.append(createCard(item.name, item.link));
-// });
 
 const cardList = new Section({
   data: places,

@@ -1,4 +1,4 @@
-import {page} from '../utils/constants.js';
+import {page, popupCloseButtonSelector} from '../utils/constants.js';
 export default class Popup{
   constructor(popupSelector){
     this._popup = document.querySelector(popupSelector);
@@ -20,8 +20,13 @@ export default class Popup{
     }
   }
   setEventListeners(){
-    const popupCloseButton = this._popup.querySelector('.button_type_close');
+    const popupCloseButton = this._popup.querySelector(popupCloseButtonSelector);
     popupCloseButton.addEventListener('click', this.close.bind(this));
+    // this._popup.addEventListener('click', (evt) =>{
+    //   if ((evt.target !== evt.currentTarget)&&(evt.target.classList.contains(popupSelector))){
+    //     this.close();
+    //   }
+    // })
   }
 }
 
