@@ -1,12 +1,18 @@
-import places from './places.js';
-import Card from './card.js';
-import obj from './config.js';
-import FormValidator from './validate.js';
+import {page, templateSelector, cardListSection, popupProfileSelector, popupImageSelector, popupAddElementSelector } from './utils/constants.js';
+import places from './utils/places.js';
+import Popup from './components/popup.js';
+import PopupWithImage from './components/popupimage.js';
+import PopupWithForm from './components/popupform.js';
+import Card from './components/card.js';
+import Section from './components/section.js';
+import obj from './utils/config.js';
+import FormValidator from './components/validate.js';
+
 
 const popupProfile = document.querySelector('.popup_profile');
 const popupAddElement = document.querySelector('.popup_addElement');
 const popupEnlargeImage = document.querySelector('.popup_openImage');
-const page = document.querySelector('.page');
+
 const popupProfileOpenButton = document.querySelector('.button_type_edit');
 const popupAddElementOpenButton = document.querySelector('.button_type_add');
 
@@ -29,19 +35,17 @@ const image = popupEnlargeImage.querySelector('.popup__image');
 const titleImage = popupEnlargeImage.querySelector('.popup__title_image');
 
 const elements = document.querySelector('.elements');
-const templateSelector = '.element_template';
 
 //создаем карточку из класса и добавляем в ДОМ
-function addCard (name, link){
+function createCard (name, link){
   const card = new Card(templateSelector, name, link, openPopupEnlargeImage);
-  const elem = card.generateCard();
-  return elem;
+  return card.generateCard();
 };
 
 //обработчик формы добавления карточки
 function formAddElemSubmitHandler(evt){
   evt.preventDefault();
-  elements.prepend(addCard(titleInput.value, srcInput.value));
+  elements.prepend(createCard(titleInput.value, srcInput.value));
   closePopup(popupAddElement);
 };
 
@@ -104,22 +108,39 @@ const validateForm = (popup)=>{
   const newValidator = new FormValidator(obj, formElement);
   newValidator.enableValidation();
 };
-
-popupProfileOpenButton.addEventListener('click', openPopupProfile);
+//УДАЛИТЬ создание newpopup
+const popupPro = new Popup (popupProfileSelector);
+// popupProfileOpenButton.addEventListener('click', openPopupProfile);
+popupProfileOpenButton.addEventListener('click', popupPro.open.bind(popupPro));
+popupPro.setEventListeners();
 validateForm(popupProfile);
 formProfile.addEventListener('submit', formProfileSubmitHandler);
-popupProfileClose.addEventListener('click', () => {closePopup(popupProfile)});
+// popupProfileClose.addEventListener('click', () => {closePopup(popupProfile)});
 
 popupAddElementOpenButton.addEventListener('click', openPopupAddElement);
 validateForm(popupAddElement);
 formAddElement.addEventListener('submit', formAddElemSubmitHandler);
 popupAddElementClose.addEventListener('click',() => {closePopup(popupAddElement)});
 
-popupEnlargeImage.querySelector('.button_type_close').addEventListener('click',() => {closePopup(popupEnlargeImage)});
+//popupEnlargeImage.querySelector('.button_type_close').addEventListener('click',() => {closePopup(popupEnlargeImage)});
 
 //закрываем попап по оверлэй
-page.addEventListener('click', closePopupByClickOnOverlay);
+//page.addEventListener('click', closePopupByClickOnOverlay);
 
-places.forEach((item)=>{
-  elements.append(addCard(item.name, item.link));
-});
+// places.forEach((item)=>{
+//   elements.append(createCard(item.name, item.link));
+// });
+
+const cardList = new Section({
+  data: places,
+  renderer: (item)=> {
+    const popupImage = new PopupWithImage(popupImageSelector);
+    popupImage.setEventListeners();
+    const card = new Card(templateSelector, item.name, item.link, popupImage.open.bind(popupImage));
+    const cardElement = card.generateCard();
+    cardList.addItem(cardElement);
+  }
+  },
+  cardListSection
+);
+cardList.renderItems();
