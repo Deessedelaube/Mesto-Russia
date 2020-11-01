@@ -8,7 +8,7 @@ export default class UserInfo{
             info: this._info.textContent}
   }
   setUserInfo(obj){
-    this._name.textContent = obj.name;
-    this._info.textContent = obj.info;
+    this._name.textContent = obj.fullname;
+    this._info.textContent = obj.job;
   }
 }

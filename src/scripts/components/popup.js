@@ -23,10 +23,10 @@ export default class Popup{
     const popupCloseButton = this._popup.querySelector(popupCloseButtonSelector);
     popupCloseButton.addEventListener('click', this.close.bind(this));
     // this._popup.addEventListener('click', (evt) =>{
-    //   if ((evt.target !== evt.currentTarget)&&(evt.target.classList.contains(popupSelector))){
+    //   if (evt.target !== evt.currentTarget){
     //     this.close();
-    //   }
-    // })
+    //}
+    //})
   }
 }
 
