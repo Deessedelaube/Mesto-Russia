@@ -1,3 +1,4 @@
+import './index.css';
 import {templateSelector, cardListSection, popupProfileSelector,
     popupImageSelector, popupAddElementSelector,
     profileNameSelector, profileInfoSelector,
@@ -18,14 +19,6 @@ function formAddElemSubmitHandler(obj){
   cardList.addNewItem(cardElement);
   this.close();
 };
-
-//* функция закрытия по клику не на форму
-// const closePopupByClickOnOverlay = (event) => {
-//   if ((event.target !== event.currentTarget)&&(event.target.classList.contains('popup_opened'))){
-//     const openedPopup = event.target;
-//     closePopup(openedPopup);
-//   };
-// };
 
 // Обработчик попапа профиля
 function formProfileSubmitHandler(obj){

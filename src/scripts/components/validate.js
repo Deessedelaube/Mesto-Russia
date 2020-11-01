@@ -52,7 +52,7 @@ class FormValidator {
     });
   };
 
-  enableValidation = () => {
+  enableValidation(){
     const submitFormHandler = (evt)=>{
       evt.preventDefault();
     };

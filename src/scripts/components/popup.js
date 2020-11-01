@@ -7,9 +7,11 @@ export default class Popup{
     this._popup.classList.add('popup_opened');
     page.classList.add('page_overflow_hidden');
     document.addEventListener('keydown', this._handleEscClose.bind(this));
+    page.addEventListener('click', this._handleOverlayClose.bind(this));
   }
   close(){
     document.removeEventListener('keydown', this._handleEscClose.bind(this));
+    page.removeEventListener('click', this._handleOverlayClose.bind(this));
     this._popup.classList.remove('popup_opened');
     page.classList.remove('page_overflow_hidden');
   }
@@ -19,14 +21,13 @@ export default class Popup{
       this.close();
     }
   }
+  _handleOverlayClose(event){
+    if ((event.target !== event.currentTarget)&&(event.target.classList.contains('popup_opened'))){
+      this.close();}
+  }
   setEventListeners(){
     const popupCloseButton = this._popup.querySelector(popupCloseButtonSelector);
     popupCloseButton.addEventListener('click', this.close.bind(this));
-    // this._popup.addEventListener('click', (evt) =>{
-    //   if (evt.target !== evt.currentTarget){
-    //     this.close();
-    //}
-    //})
   }
 }
 
