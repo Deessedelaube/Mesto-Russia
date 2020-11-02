@@ -2,20 +2,28 @@ import './index.css';
 import {templateSelector, cardListSection, popupProfileSelector,
     popupImageSelector, popupAddElementSelector,
     profileNameSelector, profileInfoSelector,
-    popupProfileOpenButton, popupAddElementOpenButton} from '../scripts/utils/constants.js';
+    popupProfileOpenButton, popupAddElementOpenButton,
+    formPopupProfile, formPopupAddElement} from '../scripts/utils/constants.js';
+import obj from '../scripts/utils/config.js';
 import places from '../scripts/utils/places.js';
-import PopupWithImage from '../scripts/components/popupimage.js';
-import PopupWithForm from '../scripts/components/popupform.js';
-import UserInfo from '../scripts/components/userinfo.js';
-import Card from '../scripts/components/card.js';
-import Section from '../scripts/components/section.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import Card from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
+import FormValidator from '../scripts/components/FormValidator.js';
 
+const popupImage = new PopupWithImage(popupImageSelector);
+
+//создаем элемент карточки
+function createCard(obj){
+  popupImage.setEventListeners();
+  const card = new Card(templateSelector, obj.name, obj.link, popupImage.open.bind(popupImage));
+  return card.generateCard();
+};
 //обработчик формы добавления карточки
 function formAddElemSubmitHandler(obj){
-  const popupImage = new PopupWithImage(popupImageSelector);
-  popupImage.setEventListeners();
-  const card = new Card(templateSelector, obj.elemTitle, obj.link, popupImage.open.bind(popupImage));
-  const cardElement = card.generateCard();
+  const cardElement = createCard({name: obj.elemTitle, link: obj.link});
   cardList.addNewItem(cardElement);
   this.close();
 };
@@ -32,21 +40,20 @@ const userData = new UserInfo ({nameSelector: profileNameSelector, infoSelector:
 const popupProfile = new PopupWithForm (popupProfileSelector, formProfileSubmitHandler);
 popupProfileOpenButton.addEventListener('click', popupProfile.open.bind(popupProfile));
 popupProfile.setEventListeners();
-popupProfile.validate();
+const profileFormValidator = new FormValidator(obj, formPopupProfile);
+profileFormValidator.enableValidation();
 
 //создание экземпляра класса для попапа добавления карточки
 const popupAdd = new PopupWithForm(popupAddElementSelector, formAddElemSubmitHandler);
 popupAddElementOpenButton.addEventListener('click', popupAdd.open.bind(popupAdd));
 popupAdd.setEventListeners();
-popupAdd.validate();
+const addElemFormValidator = new FormValidator(obj, formPopupAddElement);
+addElemFormValidator.enableValidation();
 
 const cardList = new Section({
   data: places,
   renderer: (item)=> {
-    const popupImage = new PopupWithImage(popupImageSelector);
-    popupImage.setEventListeners();
-    const card = new Card(templateSelector, item.name, item.link, popupImage.open.bind(popupImage));
-    const cardElement = card.generateCard();
+    const cardElement = createCard({name: item.name, link: item.link});
     cardList.addItem(cardElement);
   }
   },

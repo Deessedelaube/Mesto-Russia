@@ -1,7 +1,6 @@
 import {formElementSelector, formInputSelector} from '../utils/constants.js';
-import Popup from './popup.js';
-import FormValidator from './validate.js';
-import obj from '../utils/config.js';
+import Popup from './Popup.js';
+
 export default class PopupWithForm extends Popup{
   constructor(popupSelector, formSubmitHandler){
     super(popupSelector);
@@ -20,16 +19,11 @@ export default class PopupWithForm extends Popup{
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._formSubmitHandler(this._getInputValues());
-      this._formElement.reset();
     });
     super.setEventListeners();
   }
   close(){
     this._formElement.reset();
     super.close();
-  }
-  validate(){
-    const newValidator = new FormValidator(obj, this._formElement);
-    newValidator.enableValidation();
   }
 }

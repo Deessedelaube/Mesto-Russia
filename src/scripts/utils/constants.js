@@ -11,6 +11,8 @@ export const titleImageSelector = '.popup__title_image';
 
 export const formElementSelector = '.form';
 export const formInputSelector ='.form__input';
+export const formPopupProfile = document.querySelector('.form_profile');
+export const formPopupAddElement = document.querySelector('.form_addElement');
 
 export const profileNameSelector = '.profile__name';
 export const profileInfoSelector = '.profile__job';
