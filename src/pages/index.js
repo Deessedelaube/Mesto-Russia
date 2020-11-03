@@ -14,10 +14,10 @@ import Section from '../scripts/components/Section.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 
 const popupImage = new PopupWithImage(popupImageSelector);
+popupImage.setEventListeners();
 
 //создаем элемент карточки
 function createCard(obj){
-  popupImage.setEventListeners();
   const card = new Card(templateSelector, obj.name, obj.link, popupImage.open.bind(popupImage));
   return card.generateCard();
 };
@@ -38,18 +38,31 @@ const userData = new UserInfo ({nameSelector: profileNameSelector, infoSelector:
 
 // создание экземпляра класса для попапа профиля
 const popupProfile = new PopupWithForm (popupProfileSelector, formProfileSubmitHandler);
-popupProfileOpenButton.addEventListener('click', popupProfile.open.bind(popupProfile));
-popupProfile.setEventListeners();
 const profileFormValidator = new FormValidator(obj, formPopupProfile);
-profileFormValidator.enableValidation();
+popupProfileOpenButton.addEventListener('click', openPopupProfile.bind(popupProfile));
+popupProfile.setEventListeners();
+
+//открываем попап профиля, вставляем значения данных пользователя, валидируем форму
+function openPopupProfile(){
+  const data = userData.getUserInfo();
+  formPopupProfile.querySelector('.form__input_name').value = data.name;
+  formPopupProfile.querySelector('.form__input_description').value = data.info;
+  popupProfile.open();
+  profileFormValidator.enableValidation();
+};
 
 //создание экземпляра класса для попапа добавления карточки
 const popupAdd = new PopupWithForm(popupAddElementSelector, formAddElemSubmitHandler);
-popupAddElementOpenButton.addEventListener('click', popupAdd.open.bind(popupAdd));
-popupAdd.setEventListeners();
 const addElemFormValidator = new FormValidator(obj, formPopupAddElement);
+popupAddElementOpenButton.addEventListener('click', openPopupAddElement.bind(popupAdd));
 addElemFormValidator.enableValidation();
+popupAdd.setEventListeners();
 
+//открываем попап доб-я карточки, меняем состояние кнопки, тк форма пустая
+function openPopupAddElement(){
+  popupAdd.open();
+  addElemFormValidator.toggleButtonState();
+};
 const cardList = new Section({
   data: places,
   renderer: (item)=> {
