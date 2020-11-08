@@ -10,6 +10,7 @@ import obj from '../scripts/utils/config.js';
 import places from '../scripts/utils/places.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
+import PopupConfirm from '../scripts/components/PopupConfirm';
 import UserInfo from '../scripts/components/UserInfo.js';
 import Card from '../scripts/components/Card.js';
 import Section from '../scripts/components/Section.js';
@@ -40,7 +41,6 @@ function createCard(obj){
 };
 //обработчик формы добавления карточки
 function formAddElemSubmitHandler(obj){
-  formPopupAddElement.querySelector('.button_type_save').textContent = 'Сохранение...';
   api.addCard(obj).then((res)=>{
     const cardElement = createCard({name: res.name, link: res.link});
     cardListSection.prepend(cardElement);
@@ -50,7 +50,6 @@ function formAddElemSubmitHandler(obj){
 
 // Обработчик попапа профиля
 function formProfileSubmitHandler(obj){
-  formPopupProfile.querySelector('.button_type_save').textContent = 'Сохранение...';
   api.updateUserInfo(obj).then((res)=>{
     userData.setUserInfo({fullname: res.name, job: res.about});
     this.close();
@@ -90,25 +89,27 @@ popupAvatarOpenButton.addEventListener('click', popupAvatar.open.bind(popupAvata
 popupAvatar.setEventListeners();
 
 function avatarHandler(obj){
-  formPopupAvatar.querySelector('.button_type_save').textContent = 'Сохранение...';
   api.updateAvatar(obj).then((res)=>{
     userData.setAvatar(res.avatar);
     this.close();
   });
 };
 
-const popupConfirm = new PopupWithForm(popupConfirmSelector, confirmHadler);
-popupConfirm.setEventListeners();
-
 function cardDelete(id){
   console.log(id);
-  //popupConfirm.open.bind(popupConfirm);
-  // formPopupConfirm.querySelector('.button_type_save').textContent = 'Сохранение...';
+  const popupConfirm = new PopupConfirm(popupConfirmSelector, confirmHandler, id);
+  popupConfirm.setEventListeners();
+  popupConfirm.open.bind(popupConfirm);
+
   // api.deleteCard(id).then((res)=>{
   //   console.log(res)
   //})
 }
-function confirmHadler(){
+function confirmHandler(id){
+  api.deleteCard(id).then((res)=>{
+      console.log(res);
+
+  })
 }
 
 //рендерим карточки с сервера

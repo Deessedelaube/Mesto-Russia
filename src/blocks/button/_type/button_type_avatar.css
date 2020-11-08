@@ -4,10 +4,16 @@
   margin: 0;
   overflow: hidden;
   border-radius: 50%;
+  border: none;
   cursor: pointer;
-}
-.button_type_avatar:hover{
-  background-image: url("../../../images/Vector.png");
+  position: relative;
+  z-index: 3;
+  background-image: url("../../../images/Vector.svg");
   background-size: 26px;
-  background-color: rgba(0,0,0,0.8);
+  background-color: #000;
+  opacity: 1;
+}
+.button_type_avatar:hover .avatar{
+  opacity: 0.2;
+
 }
