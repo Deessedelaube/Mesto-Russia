@@ -1,9 +1,11 @@
 class Card {
-  constructor(templateSelector, name, link, handleCardClick){
+  constructor(templateSelector, name, link, id, handleCardClick, handleCardDelete){
     this._templateSelector = templateSelector;
     this._name = name;
     this._link = link;
+    this._id = id;
     this._handleCardClick = handleCardClick;
+    this._handleCardDelete=handleCardDelete
   }
   _getTemplate(){
     //создаем шаблон элемента
@@ -30,7 +32,10 @@ class Card {
     return this._element;
   }
   _setEventListeners(){
-    this._element.querySelector('.button_type_delete').addEventListener('click', ()=>this._handleDelete());
+    this._element.querySelector('.button_type_delete').addEventListener('click', ()=>{
+      debugger;
+      this._handleCardDelete(this._id);
+    });
     this._likeBtn.addEventListener('click', ()=>this._handleLike());
     this._element.querySelector('.button_type_enlarge').addEventListener('click', ()=>this._handleCardClick(this._name, this._link));
   }

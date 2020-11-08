@@ -7,6 +7,7 @@
 @import url("./_type/button_type_enlarge.css");
 @import url("./_type/_clicked/button_type_like_clicked.css");
 @import url("./_type/_disabled/button_type_save_disabled.css");
+@import url("./_type/button_type_avatar.css");
 
 
 .button{

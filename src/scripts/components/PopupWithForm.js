@@ -24,6 +24,7 @@ export default class PopupWithForm extends Popup{
   }
   close(){
     this._formElement.reset();
+    this._formElement.querySelector('.button_type_save').textContent = this._formElement.querySelector('.button_type_save').value;
     super.close();
   }
 }
