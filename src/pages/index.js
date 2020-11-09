@@ -25,24 +25,42 @@ const api = new Api({
   }
 });
 
-const userData = new UserInfo ({nameSelector: profileNameSelector, infoSelector: profileInfoSelector, avatarSelector: avatarSelector});
+const userData = new UserInfo ({nameSelector: profileNameSelector, infoSelector: profileInfoSelector, avatarSelector: avatarSelector, id: '1'});
 
-api.loadUserInfo().then((data)=>{
-  userData.setUserInfo({fullname: data.name, job: data.about, avatar: data.avatar})
-})
+const user = api.loadUserInfo().then((data)=>{
+  userData.setUserInfo({fullname: data.name, job: data.about, avatar: data.avatar, _id: data._id});
+  const user = userData.getUserInfo();
+  api.getInitialCards().then((cards)=>{
+    const cardList = new Section({
+      data: cards,
+      renderer: (item)=> {
+        const cardElement = createCard({name: item.name, link: item.link, _id: item._id, authorId: item.owner._id, likes: item.likes}, user._id);
+        cardList.addItem(cardElement);
+      }
+    },
+    cardListSection
+    );
+    cardList.renderItems();
+  });
+  return user;
+});
+//рендерим карточки с сервера
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
 
 //создаем элемент карточки
-function createCard(obj){
-  const card = new Card(templateSelector, obj.name, obj.link, obj._id, popupImage.open.bind(popupImage), cardDelete);
+function createCard(obj, userId){
+  const card = new Card(templateSelector,
+    obj, userId,
+    popupImage.open.bind(popupImage),
+    handleCardDelete);
   return card.generateCard();
 };
 //обработчик формы добавления карточки
 function formAddElemSubmitHandler(obj){
   api.addCard(obj).then((res)=>{
-    const cardElement = createCard({name: res.name, link: res.link});
+    const cardElement = createCard({name: res.name, link: res.link, _id: res._id, authorId: res.owner._id, likes: res.likes}, user._id);
     cardListSection.prepend(cardElement);
     this.close();
   })
@@ -95,35 +113,18 @@ function avatarHandler(obj){
   });
 };
 
-function cardDelete(id){
-  console.log(id);
+function handleCardDelete(id){
+  function confirmHandler(id){
+    api.deleteCard(id).then((res)=>{
+      popupConfirm.close();
+      return res;
+    });
+  };
   const popupConfirm = new PopupConfirm(popupConfirmSelector, confirmHandler, id);
+  popupConfirm.open();
   popupConfirm.setEventListeners();
-  popupConfirm.open.bind(popupConfirm);
-
-  // api.deleteCard(id).then((res)=>{
-  //   console.log(res)
-  //})
-}
-function confirmHandler(id){
-  api.deleteCard(id).then((res)=>{
-      console.log(res);
-
-  })
 }
 
-//рендерим карточки с сервера
-api.getInitialCards().then((cards)=>{
-  const cardList = new Section({
-    data: cards,
-    renderer: (item)=> {
-      const cardElement = createCard({name: item.name, link: item.link, _id: item._id});
-      cardList.addItem(cardElement);
-    }
-  },
-  cardListSection
-  );
-  cardList.renderItems();
-})
+
 
 
