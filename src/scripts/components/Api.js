@@ -85,6 +85,17 @@ class Api {
       if (!res.ok) {
         return Promise.reject('Server error');
       }
+      return res.ok;
+    }).catch((err) => console.log(err));
+  }
+  likeCard(id, method){
+    return fetch(`${this._url}/cards/likes/${id}`, {
+      method: `${method}`,
+      headers: this._headers
+    }).then((res) => {
+      if (!res.ok) {
+        return Promise.reject('Server error');
+      }
       return res.json();
     }).then((data) => {
       return data;

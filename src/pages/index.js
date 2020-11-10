@@ -27,14 +27,16 @@ const api = new Api({
 
 const userData = new UserInfo ({nameSelector: profileNameSelector, infoSelector: profileInfoSelector, avatarSelector: avatarSelector, id: '1'});
 
-const user = api.loadUserInfo().then((data)=>{
+api.loadUserInfo().then((data)=>{
   userData.setUserInfo({fullname: data.name, job: data.about, avatar: data.avatar, _id: data._id});
-  const user = userData.getUserInfo();
-  api.getInitialCards().then((cards)=>{
+  userData.getUserInfo();
+  return api.getInitialCards()
+  })
+  .then((cards)=>{
     const cardList = new Section({
       data: cards,
       renderer: (item)=> {
-        const cardElement = createCard({name: item.name, link: item.link, _id: item._id, authorId: item.owner._id, likes: item.likes}, user._id);
+        const cardElement = createCard({name: item.name, link: item.link, _id: item._id, authorId: item.owner._id, likes: item.likes}, userData.id);
         cardList.addItem(cardElement);
       }
     },
@@ -42,8 +44,7 @@ const user = api.loadUserInfo().then((data)=>{
     );
     cardList.renderItems();
   });
-  return user;
-});
+
 //рендерим карточки с сервера
 
 const popupImage = new PopupWithImage(popupImageSelector);
@@ -54,13 +55,14 @@ function createCard(obj, userId){
   const card = new Card(templateSelector,
     obj, userId,
     popupImage.open.bind(popupImage),
-    handleCardDelete);
+    handleCardDelete,
+    handleCardLike);
   return card.generateCard();
 };
 //обработчик формы добавления карточки
 function formAddElemSubmitHandler(obj){
   api.addCard(obj).then((res)=>{
-    const cardElement = createCard({name: res.name, link: res.link, _id: res._id, authorId: res.owner._id, likes: res.likes}, user._id);
+    const cardElement = createCard({name: res.name, link: res.link, _id: res._id, authorId: res.owner._id, likes: res.likes}, userData.id);
     cardListSection.prepend(cardElement);
     this.close();
   })
@@ -112,19 +114,24 @@ function avatarHandler(obj){
     this.close();
   });
 };
+function handleCardLike(id, method){
+  return api.likeCard(id, method);
+};
 
-function handleCardDelete(id){
-  function confirmHandler(id){
-    api.deleteCard(id).then((res)=>{
-      popupConfirm.close();
-      return res;
-    });
-  };
+function handleCardDelete(id, card){
   const popupConfirm = new PopupConfirm(popupConfirmSelector, confirmHandler, id);
   popupConfirm.open();
-  popupConfirm.setEventListeners();
-}
-
+  popupConfirm.setEventListeners(card);
+};
+function confirmHandler(id, card){
+  api.deleteCard(id).then((res)=>{
+    if (res){
+      this.close();
+      card.remove();
+      card = null;
+    }
+  })
+  };
 
 
 
