@@ -26,7 +26,7 @@ const api = new Api({
 });
 
 const userData = new UserInfo ({nameSelector: profileNameSelector, infoSelector: profileInfoSelector, avatarSelector: avatarSelector, id: '1'});
-
+//запрашиваем информацию о пользователе, а затем рендерим картинки с сервера
 api.loadUserInfo().then((data)=>{
   userData.setUserInfo({fullname: data.name, job: data.about, avatar: data.avatar, _id: data._id});
   userData.getUserInfo();
@@ -44,8 +44,6 @@ api.loadUserInfo().then((data)=>{
     );
     cardList.renderItems();
   });
-
-//рендерим карточки с сервера
 
 const popupImage = new PopupWithImage(popupImageSelector);
 popupImage.setEventListeners();
@@ -108,21 +106,24 @@ const popupAvatar = new PopupWithForm(popupAvatarSelector, avatarHandler);
 popupAvatarOpenButton.addEventListener('click', popupAvatar.open.bind(popupAvatar));
 popupAvatar.setEventListeners();
 
+//обработчик смены аватара
 function avatarHandler(obj){
   api.updateAvatar(obj).then((res)=>{
     userData.setAvatar(res.avatar);
     this.close();
   });
 };
+//обработчик лайков
 function handleCardLike(id, method){
   return api.likeCard(id, method);
 };
-
+// обработчик клика удаления карточки
 function handleCardDelete(id, card){
   const popupConfirm = new PopupConfirm(popupConfirmSelector, confirmHandler, id);
   popupConfirm.open();
   popupConfirm.setEventListeners(card);
 };
+//обработчик формы попапа подтверждения
 function confirmHandler(id, card){
   api.deleteCard(id).then((res)=>{
     if (res){
