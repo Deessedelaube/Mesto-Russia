@@ -133,6 +133,3 @@ function confirmHandler(id, card){
     }
   })
   };
-
-
-

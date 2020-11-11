@@ -22,9 +22,14 @@ module.exports = {
         }
       },
       {
-        // правило для картинок и шрифтов
-        test: /\.(png|svg|jpg|gif|woff2|woff)$/,
-        loader: 'file-loader'
+        // правило для картинок
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader?name=./images/[name].[ext]'
+      },
+      {
+        // правило для шрифтов
+        test: /\.(eot|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=./vendor/[name].[ext]'
       },
       {
         //правило для html
