@@ -1,19 +1,21 @@
-import {page, popupCloseButtonSelector} from '../utils/constants.js';
 export default class Popup{
-  constructor(popupSelector){
+  constructor(popupSelector, page, popupCloseButtonSelector){
     this._popup = document.querySelector(popupSelector);
+    this._page = page;
+    this._closeBtn = this._popup.querySelector(popupCloseButtonSelector);
+    this._handleEscClose=this._handleEscClose.bind(this);
   }
   open(){
     this._popup.classList.add('popup_opened');
-    page.classList.add('page_overflow_hidden');
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
-    page.addEventListener('click', this._handleOverlayClose.bind(this));
+    this._page.classList.add('page_overflow_hidden');
+    document.addEventListener('keydown', this._handleEscClose);
+
   }
   close(){
-    document.removeEventListener('keydown', this._handleEscClose.bind(this));
-    page.removeEventListener('click', this._handleOverlayClose.bind(this));
+    document.removeEventListener('keydown', this._handleEscClose);
+    this._page.removeEventListener('click', this._handleOverlayClose.bind(this));
     this._popup.classList.remove('popup_opened');
-    page.classList.remove('page_overflow_hidden');
+    this._page.classList.remove('page_overflow_hidden');
   }
   _handleEscClose(evt){
     const openedPopup = document.querySelector('.popup_opened');
@@ -26,8 +28,9 @@ export default class Popup{
       this.close();}
   }
   setEventListeners(){
-    const popupCloseButton = this._popup.querySelector(popupCloseButtonSelector);
-    popupCloseButton.addEventListener('click', this.close.bind(this));
+    this._page.addEventListener('click', this._handleOverlayClose.bind(this));
+    //const popupCloseButton = this._popup.querySelector(popupCloseButtonSelector);
+    this._closeBtn.addEventListener('click', this.close.bind(this));
   }
 }
 

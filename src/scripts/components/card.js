@@ -39,22 +39,24 @@ class Card {
     elementImage.src = this._link;
     this._element.querySelector('.element__title').textContent = this._name;
     elementImage.alt = this._name;
-    this._element.querySelector('.element__likes_number').textContent = this.likes.length;
+    this._setLikesNumber(this.likes);
 
     //возвращаем наружу элемент
     return this._element;
   }
   _setEventListeners(){
     if (this._deleteBtn){
-      this._deleteBtn.addEventListener('click', ()=> this._handleCardDelete(this.id, this._element));
+      this._deleteBtn.addEventListener('click', ()=> this._handleCardDelete(this.id, this));
       };
     this._likeBtn.addEventListener('click', ()=>{
-      this._likeBtn.classList.toggle('button_type_like_clicked');
-      this._handleLike().then((res)=>{
-        this.likes= res.likes.map(item=>item._id);
-        this._element.querySelector('.element__likes_number').textContent = this.likes.length;
-        this._isLiked = this.likes.includes(this._userId);
-      });
+      this._handleLike()
+        .then((res)=>{
+          this._likeBtn.classList.toggle('button_type_like_clicked');
+          this.likes= res.likes.map(item=>item._id);
+          this._setLikesNumber(this.likes);
+          this._isLiked = this.likes.includes(this._userId);
+        })
+        .catch((err)=>{console.log('DeleteCard Error: ', err)});
     });
     this._element.querySelector('.button_type_enlarge').addEventListener('click', ()=>this._handleCardClick(this._name, this._link));
   }
@@ -69,10 +71,10 @@ class Card {
       return this._handleApiLike(this.id, 'PUT')
     }
   }
+  _setLikesNumber(likes){
+    this._element.querySelector('.element__likes_number').textContent = likes.length;
+  }
 }
 
 export default Card;
 
-          //this.likes= res.likes.map(item=>item._id);
-          //element.querySelector('.element__likes_number').textContent = this.likes.length;
-          //this._isLiked = this.likes.includes(this._userId);

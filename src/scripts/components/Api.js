@@ -3,18 +3,18 @@ class Api {
     this._url= options.baseUrl;
     this._headers= options.headers;
   }
+
   loadUserInfo(){
     return fetch(`${this._url}/users/me`, {
       headers: this._headers
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        throw new Error(`'Server error: ',${res.status}`);
       }
       return res.json();
-    }).then((data) => {
-      return data;
-    }).catch((err) => console.log(err));
+    })
   }
+
   updateUserInfo(obj){
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
@@ -25,13 +25,12 @@ class Api {
       })
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        throw new Error(`'Server error: ',${res.status}`);
       }
       return res.json();
-    }).then((data) => {
-      return data;
-    }).catch((err) => console.log(err));
+    });
   }
+
   updateAvatar(obj){
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
@@ -41,25 +40,23 @@ class Api {
       })
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        throw new Error(`'Server error: ',${res.status}`);
       }
       return res.json();
-    }).then((data) => {
-      return data;
-    }).catch((err) => console.log(err));
+    });
   }
+
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        throw new Error(`'Server error: ',${res.status}`);
       }
       return res.json();
-    }).then((data) => {
-      return data;
-    }).catch((err) => console.log(err));
+    });
   }
+
   addCard(obj){
     return fetch(`${this._url}/cards`, {
       method: 'POST',
@@ -70,36 +67,34 @@ class Api {
       })
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        throw new Error(`'Server error: ',${res.status}`);
       }
       return res.json();
-    }).then((data) => {
-      return data;
-    }).catch((err) => console.log(err));
+    });
   }
+
   deleteCard(id){
     return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: this._headers
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        throw new Error(`'Server error: ',${res.status}`);
       }
       return res.ok;
-    }).catch((err) => console.log(err));
+    });
   }
+
   likeCard(id, method){
     return fetch(`${this._url}/cards/likes/${id}`, {
       method: `${method}`,
       headers: this._headers
     }).then((res) => {
       if (!res.ok) {
-        return Promise.reject('Server error');
+        return reject(new Error(`'Server error: ',${res.status}`));
       }
       return res.json();
-    }).then((data) => {
-      return data;
-    }).catch((err) => console.log(err));
+    });
   }
 }
 export default Api;
