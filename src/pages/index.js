@@ -9,6 +9,7 @@ import {templateSelector, cardListSection, popupProfileSelector,
     formPopupProfileNameSelector,formPopupProfileInfoSelector,
     imageSelector, titleImageSelector} from '../scripts/utils/constants.js';
 import obj from '../scripts/utils/config.js';
+import {renderLoading} from '../scripts/utils/renderLoading.js';
 
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
@@ -60,10 +61,11 @@ api.loadUserInfo().then((data)=>{
         .then((res)=>{
           const cardElement = createCard({name: res.name, link: res.link, _id: res._id, authorId: res.owner._id, likes: res.likes}, userData.id);
           cardList.addNewItem(cardElement);
+          this.close();
         })
         .catch((err)=>{console.log('AddCard Error: ', err)})
         .finally(()=>{
-          this.close();
+          this.renderLoading(this._formElement, false);
         });
     };
 
@@ -90,11 +92,13 @@ api.loadUserInfo().then((data)=>{
     function confirmHandler(id, card){
     api.deleteCard(id)
       .then((res)=>{
-        if (res){card.handleDelete();}
+        if (res){
+          card.handleDelete();
+          this.close();}
       })
       .catch((err)=>{console.log('DeleteCard Error: ', err)})
       .finally(()=>{
-        this.close();
+        this.renderLoading(this._formElement, false);
       })
     };
   })
@@ -107,10 +111,11 @@ api.loadUserInfo().then((data)=>{
       api.updateUserInfo(obj)
         .then((res)=>{
           userData.setUserInfo({fullname: res.name, job: res.about});
+          this.close();
         })
         .catch((err)=>{console.log('UserInfoUpdate Error: ', err)})
         .finally(()=>{
-          this.close();
+          this.renderLoading(this._formElement, false);
         });
     };
 
@@ -140,10 +145,11 @@ api.loadUserInfo().then((data)=>{
       api.updateAvatar(obj)
         .then((res)=>{
           userData.setAvatar(res.avatar);
+          this.close();
         })
         .catch((err)=>{console.log('AvatarUpdate Error: ', err)})
         .finally(()=>{
-          this.close();
+          this.renderLoading(this._formElement, false);
         });
     };
   });
